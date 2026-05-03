@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7075767021232424528}
   - component: {fileID: 6906537391508067860}
   - component: {fileID: -7218541932416648987}
+  - component: {fileID: -5149168352012287784}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
@@ -175,3 +176,17 @@ MonoBehaviour:
   attackRange: 1.5
   contactDamage: 1
   damageCooldown: 1
+--- !u!114 &-5149168352012287784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 105633546911533019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d343e4c3971048efaa555869baa58bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyScoreReward
+  scoreValue: 10
+  isBoss: 0

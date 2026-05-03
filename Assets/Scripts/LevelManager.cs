@@ -19,12 +19,18 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        EnemyChase[] enemies = FindObjectsByType<EnemyChase>(FindObjectsSortMode.None);
-        aliveEnemyCount = enemies.Length;
+        // Count only non-boss enemies — the boss is tracked separately
+        EnemyScoreReward[] rewards = FindObjectsByType<EnemyScoreReward>(FindObjectsSortMode.None);
+        aliveEnemyCount = 0;
+
+        foreach (EnemyScoreReward reward in rewards)
+        {
+            if (!reward.IsBoss) aliveEnemyCount++;
+        }
 
         if (bossDoor != null) bossDoor.SetActive(true);
 
-        Debug.Log($"Level started with {aliveEnemyCount} enemies.");
+        Debug.Log($"Level started with {aliveEnemyCount} regular enemies (boss tracked separately).");
     }
 
     public void OnEnemyDefeated()
@@ -35,6 +41,15 @@ public class LevelManager : MonoBehaviour
         if (aliveEnemyCount <= 0 && !bossUnlocked)
         {
             UnlockBoss();
+        }
+    }
+
+    public void OnBossDefeated()
+    {
+        Debug.Log("Boss defeated! Victory!");
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.EndRun(true);
         }
     }
 

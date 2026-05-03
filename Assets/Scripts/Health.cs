@@ -28,11 +28,22 @@ public class Health : MonoBehaviour
             Die();
         }
     }
-
     private void Die()
     {
         Debug.Log($"{gameObject.name} died.");
         onDeath?.Invoke();
+
+        // If the player died, end the run as a loss
+        if (CompareTag("Player"))
+        {
+            if (GameManager.Instance != null)
+            {
+                GameManager.Instance.EndRun(false);
+            }
+            // Don't destroy the player here — GameManager will load a new scene
+            return;
+        }
+
         Destroy(gameObject);
     }
 }
