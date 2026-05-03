@@ -20,6 +20,10 @@ PrefabInstance:
       propertyPath: contactDamage
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: -5149168352012287784, guid: 853f4ffbf5bbd482dbe05965b31d6a7f, type: 3}
+      propertyPath: isBoss
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 105633546911533019, guid: 853f4ffbf5bbd482dbe05965b31d6a7f, type: 3}
       propertyPath: m_Name
       value: Boss
