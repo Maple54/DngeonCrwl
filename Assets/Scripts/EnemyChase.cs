@@ -2,7 +2,9 @@ using UnityEngine;
 
 /// <summary>
 /// Enemy AI implemented as a finite state machine.
-/// Adapted from the Wander/Attack/Flee pattern
+/// Adapted from the Wander/Attack/Flee pattern in Lecture 6,
+/// using the onEnter/onUpdate/onExit lifecycle covered in lectures.
+/// </summary>
 public class EnemyChase : MonoBehaviour
 {
     private enum State { Idle, Chase, Attack }
@@ -28,6 +30,8 @@ public class EnemyChase : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
         if (playerObj != null) player = playerObj.transform;
+
+        Debug.Log($"{gameObject.name} Awake — found player: {player != null}");
     }
 
     private void Start()
@@ -41,8 +45,6 @@ public class EnemyChase : MonoBehaviour
         UpdateCurrentState();
         CheckTransitions();
     }
-
-    // ---------- State lifecycle ----------
 
     private void EnterState(State newState)
     {
@@ -99,13 +101,9 @@ public class EnemyChase : MonoBehaviour
         }
     }
 
-    // ---------- Idle ----------
-
     private void OnEnterIdle() { rb.linearVelocity = Vector3.zero; }
-    private void OnUpdateIdle() { /* could add patrol or wander here later */ }
+    private void OnUpdateIdle() { }
     private void OnExitIdle() { }
-
-    // ---------- Chase ----------
 
     private void OnEnterChase() { }
 
@@ -118,13 +116,10 @@ public class EnemyChase : MonoBehaviour
 
     private void OnExitChase() { rb.linearVelocity = Vector3.zero; }
 
-    // ---------- Attack ----------
-
     private void OnEnterAttack() { rb.linearVelocity = Vector3.zero; }
 
     private void OnUpdateAttack()
     {
-        // Try to damage the player on cooldown
         if (damageTimer > 0f) return;
         if (player == null) return;
 
@@ -136,4 +131,15 @@ public class EnemyChase : MonoBehaviour
     }
 
     private void OnExitAttack() { }
+
+    private void OnDrawGizmosSelected()
+    {
+        // Yellow circle for detection range
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, detectionRange);
+
+        // Red circle for attack range
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+    }
 }

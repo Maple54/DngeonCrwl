@@ -20,6 +20,10 @@ PrefabInstance:
       propertyPath: contactDamage
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: -7218541932416648987, guid: 853f4ffbf5bbd482dbe05965b31d6a7f, type: 3}
+      propertyPath: detectionRange
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: -5149168352012287784, guid: 853f4ffbf5bbd482dbe05965b31d6a7f, type: 3}
       propertyPath: isBoss
       value: 1
@@ -84,7 +88,12 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 15
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 6906537391508067860, guid: 853f4ffbf5bbd482dbe05965b31d6a7f, type: 3}
+      propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: -5149168352012287784, guid: 853f4ffbf5bbd482dbe05965b31d6a7f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
